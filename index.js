@@ -48,9 +48,7 @@ app
 	.post("/", (req, res) => {
 		let d = req.body;
 		d.date = getCurrentDateFormatted();
-		journals.reverse();
-		journals.push(d);
-		journals.reverse();
+		journals.unshift(d)
 		data.journals = journals;
 		writeJSON(data, dataFile);
 		res.redirect("/");
