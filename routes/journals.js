@@ -11,8 +11,9 @@ router.get("/", (req, res) => {
 
 // Add new journal
 router.post("/", (req, res) => {
-  const entry = { ...req.body, date: getCurrentDateFormatted(), id: Date.now().toString() };
-  addJournal(entry);
+  const id = Date.now().toString();
+  const entry = { ...req.body, date: getCurrentDateFormatted(), id: id };
+  addJournal(entry, id);
   res.redirect("/");
 });
 

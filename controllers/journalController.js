@@ -11,7 +11,7 @@ function ensureDataFile() {
     fs.mkdirSync(dataDir); // create data/ folder if missing
   }
   if (!fs.existsSync(dataFile)) {
-    const defaultData = { journals: [] };
+    const defaultData = { journals: {} };
     fs.writeFileSync(dataFile, JSON.stringify(defaultData, null, 2), "utf-8");
     console.log("✅ Created new data.json file");
   }
@@ -39,15 +39,15 @@ function getJournals() {
   return data.journals;
 }
 
-function addJournal(entry) {
-  const data = readJSON(dataFile);
-  data.journals.unshift(entry); // Add to start
+function addJournal(entry, id) {
+  let data = readJSON(dataFile);
+  data.journals[id] = entry; // Add to start of the object
   writeJSON(data, dataFile);
 }
 
 function deleteJournalById(id) {
   const data = readJSON(dataFile);
-  data.journals = data.journals.filter(j => j.id !== id);
+  delete data.journals[id]
   writeJSON(data, dataFile);
 }
 
