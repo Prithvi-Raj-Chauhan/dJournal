@@ -47,7 +47,7 @@ function addJournal(entry, id) {
 
 function deleteJournalById(id) {
   const data = readJSON(dataFile);
-  delete data.journals[id]
+  delete data.journals[id]; // Essentialy deletes the key from the object
   writeJSON(data, dataFile);
 }
 

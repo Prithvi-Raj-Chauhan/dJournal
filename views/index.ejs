@@ -14,16 +14,16 @@
 	<body>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#"><%= Navbar %></a>
+				<a class="navbar-brand" href="/"><%= Navbar %></a>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#"
+							<a class="nav-link active" aria-current="page" href="/"
 								>Journal</a
 							>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" href="#">Plans</a>
+							<a class="nav-link active" href="/plans">Plans</a>
 						</li>
 					</ul>
 				</div>
@@ -50,7 +50,7 @@
 					
 				</div>
 				<div class="col-5 border">
-					<form class="mb-3" method="post" action="/">
+					<form class="mb-3" method="post" action="<%= url %>">
 						<div class="mb-3 p-2">
 							<label for="Title" class="form-label">Title</label>
 							<input
@@ -59,15 +59,17 @@
 								id="Title"
 								name="title"
 								placeholder="Today..."
+								value="<%= inpText.title %>"
 							/>
 						</div>
 						<label for="text" class="form-label">Enter the text</label>
 						<textarea
+							style="height: 10rem"
 							class="form-control"
 							id="text"
 							rows="3"
 							name="text"
-						></textarea>
+						><%= inpText.text %></textarea>
 						<button type="submit" class="btn btn-primary mt-3" value="submit">
 							Submit
 						</button>
