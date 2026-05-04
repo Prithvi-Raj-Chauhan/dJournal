@@ -1,11 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const crypto = require("crypto") // Encrypting the journals
-
 const dataDir = path.join(__dirname, "../../data");
 const dataFile = path.join(dataDir, "data.json");
-const defaultData = { journals: {} };
+const defaultData = { journals: {}, plans: {} };
 
 ensureDataFile();
 
@@ -24,7 +22,7 @@ function readData() {
     const rawData = fs.readFileSync(dataFile, "utf-8");
     return JSON.parse(rawData);
   } catch (err) {
-    console.error("Could not read journal data:", err.message);
+    console.error("Could not read plan data:", err.message);
     return defaultData;
   }
 }
@@ -35,24 +33,24 @@ function writeData(data) {
 
 function getAll() {
   const data = readData();
-  return data.journals || {};
+  return data.plans || {};
 }
 
 function getById(id) {
   return getAll()[id] || null;
 }
 
-function save(id, journal) {
+function save(id, plan) {
   const data = readData();
-  data.journals = data.journals || {};
-  data.journals[id] = journal;
+  data.plans = data.plans || {};
+  data.plans[id] = plan;
   writeData(data);
 }
 
 function remove(id) {
   const data = readData();
-  data.journals = data.journals || {};
-  delete data.journals[id];
+  data.plans = data.plans || {};
+  delete data.plans[id];
   writeData(data);
 }
 
